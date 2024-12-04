@@ -1,0 +1,106 @@
+IOS 
+------
+
+
+Jailbreak the Device
+
+	Jailbreak the iPhone using unc0ver.
+	Download unc0ver from https://unc0ver.dev.
+	Follow the jailbreak instructions specific to the iOS version.
+
+Install Cydia
+	Cydia is automatically installed as part of the jailbreak process.
+	Open Cydia and ensure it's working.
+
+Install ipainstaller
+	Open Cydia.
+	Search for ipainstaller.
+	If not found, add a trusted repository to Cydia:
+	Go to Sources > Edit > Add and enter the repository URL. Example: http://apt.thebigboss.org/repofiles/cydia/
+	Install ipainstaller from the repo.
+
+Enable SSH on the Device
+	Install OpenSSH from Cydia:
+	Search for "OpenSSH" in Cydia and install it.
+	Ensure the device and computer are on the same network.
+	Get the device's IP address:
+	On the iPhone: Go to Settings > Wi-Fi > [Network Name] and note the IP address.
+
+Connect to the Device via SSH
+	Open a terminal on your computer and connect to the iPhone:
+
+	ssh root@<device-ip-address>
+	Default password is alpine
+
+Identify the App Identifier
+	Use MobSF to analyze the .ipa file and extract the App Identifier
+
+Check the Directories of the application:
+	Once logged in via SSH, check the directories of app using the identifier:
+	ipainstaller -i <App Identifier>
+-------------------------------------------------------------------------------------
+
+Bypassing Jailbreak Detection
+
+frida — codeshare rodnt/ios-jailbreak-bypass -f DVIA-v2
+
+objection -g DVIA-v2 explore
+ios jailbreak disable
+
+There are different tools that can be used to bypass jailbreak detection as listed below:
+
+Liberty Lite: https://yalujailbreak.net/liberty-lite/
+A-Bypass: https://repo.co.kr/package/com.rpgfarm.a-bypass
+
+-------------------------------------------------------------------------
+
+Bypassing SSL Pinning
+
+objection -g DVIA-v2 explore
+ios sslpinning disable
+
+There are different tools that can be used to bypass ssl pinning detection as listed below:
+
+Frida: https://codeshare.frida.re/
+SSLKillSwitch2: https://github.com/nabla-c0d3/ssl-kill-switch2
+
+-----------------------------------------------------------------------------
+
+Bypassing Biometric (Local) Authentication
+
+objection -g DVIA-v2 explore
+ios ui biometrics_bypass exit
+
+--------------------------------------------------------------------------
+
+
+Checking for Sensitive Data Exposure in Local
+
+objection -g DVIA-v2 explore
+
+cd /var/mobile/Containers/Data/Application/<app-id>/Documents
+plist cat userInfo.plist  -- ssh in ios
+
+---------------------------
+Sensitive Data in 
+
+objection -g DVIA-v2 explore
+keychain dump -- ssh in ios
+--------------------------------
+
+Sensitive Data in Core Data
+
+Load the DVIA-v2 application with Grapefruit & navigate to the following: Data > Library > Application Support
+Open Model.sqlite
+
+----------------
+Sensitive Data in Couchbase Lite
+
+Load the DVIA-v2 application with Grapefruit & navigate to the following: Data > Library > Application Support > CouchbaseLite > dvcouchbasedb.cblite2
+Download db.sqlite3, open it & you will be able to see the sensitive information.
+--------------------------
+
+Sensitive Data in YapDatabase
+
+Load the DVIA-v2 application with Grapefruit & navigate to the following: Data > Library > Application Support
+Download YapDatabase.sqlite and open with SQLite Viewer
