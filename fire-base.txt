@@ -1,0 +1,9 @@
+Firebase
+
+
+
+
+curl -X POST https://goibibo-gia-chatbot.firebaseio.com/testing.json \
+-d '{"cat": "meow", "dog": "bowbow"}'
+curl -X POST https://goibibo-gia-chatbot.firebaseio.com/Logs.json -d '{"test": "testing"}'
+curl -v -X POST "https://firebaseremoteconfig.googleapis.com/v1/projects/612345678909/namespaces/firebase:fetch?key=AIzaSyDoldxbzkmSfhQSHTwm8nGMYmAZj-CnhZA" -H "Content-Type: application/json" --data '{"appId": "1:612345678909:ios:c212345678909876", "appInstanceId": "PROD"}'
