@@ -1,0 +1,38 @@
+--------ANDROID------------------------
+
+
+adb connect 127.0.0.1:62001                                                    deeplinks , webvew, api calls(zoho)
+adb devices
+adb shell “/data/local/tmp/frida-server"
+frida-ps -U  
+
+---------
+mobsf:
+
+docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest
+
+-------------
+Static Checks:
+
+adb logs  --  adb logcat
+sqlite db -- insecure storage  (cd /data/data)
+share preference -- insecure storage (cd /data/data)
+Cryptography 
+Code Obfuscation
+API Usage	
+Hardcoded sensitive information --- (apk leaks tool), (apk hunt tool) - keys
+Firebase url -- .json
+Web view related checks:
+	setJavaScriptEnabled()
+	setAllowFileAccess()
+	addJavascriptInterface()
+	runtime.exec()
+Deep links
+ adb shell am start -a android.intent.action.VIEW -d "fp://fampay.in/pay/?merchant_id=12345&amount=999999&description=Hacked&is_edit_upi=true"
+
+Tamper detection --- decompile, tamper, recompile, sign
+Manifest File Analysis -- Mobsf
+	clear text
+	Debug mode
+	Backup
+drozer --- > exploiting content providers
