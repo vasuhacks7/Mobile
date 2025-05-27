@@ -1,0 +1,23 @@
+Root Detection Bypass Methods	
+	
+Method	What to Do
+1. LSPosed + RootCloak	Hide su, root apps from target app via LSPosed module
+2. Frida	Hook or override isRooted(), File.exists(), etc.
+3. Magisk DenyList + Zygisk / Delta	Enable Zygisk → DenyList → Select target app → Install Shamiko
+4. Objection	Run: objection explore → android root disable
+5. Smali Patching	Patch isRooted() methods to return false in Smali
+6. Debuggable APK Rebuild	Rebuild with debuggable=true, remove root checks in code
+	
+SSL Pinning Bypass Methods	
+	
+Method	What to Do
+1. LSPosed (JustTrustMe / SSLUnpinning)	Load module, hook checkServerTrusted()
+2. Frida	Use universal bypass script for TrustManager, OkHttp, etc.
+3. Magisk DenyList	Some apps disable pinning in debug mode → Magisk may help
+4. Objection	Run: objection explore → android sslpinning disable
+5. Root Certificate Manager	Install Burp cert into /system/etc/security/cacerts/
+6. DNSChef (TLS Forwarding)	Redirect domains to your proxy — works with fake certs
+7. Reflutter (for Flutter apps)	Decompile Flutter app → patch pinning logic in Dart
+8. Smali Patching	Edit or no-op checkServerTrusted() or CertificatePinner
+9. Debuggable APK Rebuild	Modify network config or remove pinning in Java
+10. Modify network_security_config.xml	Add <certificates src="user" /> and repack APK
