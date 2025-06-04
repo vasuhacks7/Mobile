@@ -87,7 +87,11 @@ Sensitive Data in
 objection -g DVIA-v2 explore
 keychain dump -- ssh in ios
 --------------------------------
-Find app bundle id - after getting into ssh 
+
+Find app bundle id 
+frida-ps -Ua
+
+after getting into ssh : 
 
 find /var/containers/Bundle/Application/ -name "*.app" | grep beatroute
 
