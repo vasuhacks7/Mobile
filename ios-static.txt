@@ -87,7 +87,11 @@ Sensitive Data in
 objection -g DVIA-v2 explore
 keychain dump -- ssh in ios
 --------------------------------
+Find app bundle id - after getting into ssh 
 
+find /var/containers/Bundle/Application/ -name "*.app" | grep beatroute
+
+-----------------------------
 Sensitive Data in Core Data
 
 Load the DVIA-v2 application with Grapefruit & navigate to the following: Data > Library > Application Support
