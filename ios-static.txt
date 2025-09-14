@@ -83,6 +83,10 @@ cd /var/mobile/Containers/Data/Application/<app-id>/Documents
 /var/containers/Bundle/Application/
 ls -1 */*.app | grep -i "<AppName>"
 cd /var/mobile/Containers/Data/Application/<app-id>/Documents
+
+apt install libplist-utils
+plistutil -i MOTHERTONGUE_ARRAY.plist
+
 plist cat userInfo.plist  -- ssh in ios
 
 ---------------------------
