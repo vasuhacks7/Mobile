@@ -79,6 +79,10 @@ Checking for Sensitive Data Exposure in Local
 objection -g DVIA-v2 explore
 
 cd /var/mobile/Containers/Data/Application/<app-id>/Documents
+
+/var/containers/Bundle/Application/
+ls -1 */*.app | grep -i "<AppName>"
+cd /var/mobile/Containers/Data/Application/<app-id>/Documents
 plist cat userInfo.plist  -- ssh in ios
 
 ---------------------------
